@@ -1,6 +1,6 @@
 clc;
 clear;
-addpath(genpath('\MIToolbox-master\matlab'));
+addpath(genpath('C:\Code file\Matlab\physical-key-generation\MIToolbox-master\matlab'));
 %entropy of norm h(x)=1/2*log2(2*pi*exp(1)*sigma^2)
 
 %calculate the entropy of the norm variables with definition
