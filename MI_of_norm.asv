@@ -1,6 +1,8 @@
 %% the simulation about the basic model of physical layer key generation scheme
-% Z1~N(0,N1),Zb~N(0,N2),
-H~N(0,p) are 
+% Two independent complex Gaussian random variables Z1~N(0,N1),Zb~N(0,N2),
+% serving as noises corrupting the channel observation by Alice and Bob,
+% respectively.
+% A complex Guassian random variables H~N(0,p) as the joint channel observation
 clc;
 clear;
 addpath(genpath('C:\Code file\Matlab\keygen\MIToolbox-master\matlab'));
@@ -9,11 +11,11 @@ addpath(genpath('C:\Code file\Matlab\keygen\MIToolbox-master\matlab'));
 %calculate the entropy of the norm variables with definition
 % signal n1
 sigma1 = 3;
-h_r1_theo= 1/2*log2(2*pi*exp(1)*sigma1^2)
+h_z1_theo= 1/2*log2(2*pi*exp(1)*sigma1^2)
 %calculate the entropy of variable with statistics
-r1 = normrnd(0,sigma1,[1 100000000])';
+z1 = normrnd(0,sigma1,[1 100000000])';
 pre = 100;
-h_r1 = h(r1*pre)-log2(pre)
+h_z1 = h(r1*pre)-log2(pre)
 %h_r11 = h(r1)
 
 % signal n2

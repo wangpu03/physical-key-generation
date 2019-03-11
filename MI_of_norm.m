@@ -2,7 +2,7 @@
 % Two independent complex Gaussian random variables Z1~N(0,N1),Zb~N(0,N2),
 % serving as noises corrupting the channel observation by Alice and Bob,
 % respectively.
-% A complex Guassian random variables H~N(0,p) as the joint channel observation 
+% A complex Guassian random variables H~N(0,p) as the joint channel observation
 clc;
 clear;
 addpath(genpath('C:\Code file\Matlab\keygen\MIToolbox-master\matlab'));
@@ -11,22 +11,22 @@ addpath(genpath('C:\Code file\Matlab\keygen\MIToolbox-master\matlab'));
 %calculate the entropy of the norm variables with definition
 % signal n1
 sigma1 = 3;
-h_r1_theo= 1/2*log2(2*pi*exp(1)*sigma1^2)
+h_z1_theo= 1/2*log2(2*pi*exp(1)*sigma1^2)
 %calculate the entropy of variable with statistics
-r1 = normrnd(0,sigma1,[1 100000000])';
+z1 = normrnd(0,sigma1,[1 100000000])';
 pre = 100;
-h_r1 = h(r1*pre)-log2(pre)
+h_z1 = h(z1*pre)-log2(pre)
 %h_r11 = h(r1)
 
 % signal n2
 sigma2 = 3;
-h_r2_theo= 1/2*log2(2*pi*exp(1)*sigma2^2)
-r2 = normrnd(0,sigma2,[1 100000000])';
-h_r2 = h(r2*pre)-log2(pre)
+h_z2_theo= 1/2*log2(2*pi*exp(1)*sigma2^2)
+z2 = normrnd(0,sigma2,[1 100000000])';
+h_z2 = h(z2*pre)-log2(pre)
 
 % joint entropy of signal n1 and signal n2
-r = [r1,r2];
-hj_r1r2 = h(r)
+z = [z1,z2];
+hj_z1z2 = h(z)
 
 %%
 % signal H
@@ -34,8 +34,8 @@ sigma_h = 30;
 r_h = normrnd(0,sigma_h,[1 100000000])';
 
 %received total signal x and y
-x = r_h+r1;
-y = r_h+r2;
+x = r_h+z1;
+y = r_h+z2;
 h_x = h(x*pre)-log2(pre); %the entropy of x
 h_y = h(y*pre)-log2(pre); %the entropy of y
 h_x_theo= 1/2*log2(2*pi*exp(1)*(sigma_h^2+sigma1^2)) %the theoretical entropy of x
