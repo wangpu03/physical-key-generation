@@ -1,31 +1,34 @@
 clc;
 clear;
 addpath(genpath('C:\Code file\Matlab\physical-key-generation\MIToolbox-master\matlab'));
-%entropy of norm h(x)=1/2*log2(2*pi*exp(1)*sigma^2)
+%calculate the entropy of norm h(x)=1/2*log2(2*pi*exp(1)*sigma^2)
 
-%calculate the entropy of the norm variables with definition
+%% calculate the Gaussian with variance 3
+%%calculate the entropy of the norm variables with definition
 sigma1 = 3;
-%h_norm1= 1/2*log2(2*pi*exp(1)*sigma1^2);
+h_norm1= 1/2*log2(2*pi*exp(1)*sigma1^2);
 
 %calculate the entropy of the norm variables with probability desity function (PDF)
-%interval = 0.001;
-%x = -10*sigma1:interval:10*sigma1;
-%y = normpdf(x, 0, sigma1);
-%h_inter = sum(y.*log2(1./y))*interval;
+interval = 0.001;
+x = -10*sigma1:interval:10*sigma1;
+y = normpdf(x, 0, sigma1);
+h_inter = sum(y.*log2(1./y))*interval;
 
 %calculate the entropy of variable with statistics
 r1 = normrnd(0,sigma1,[1 100000000])';
 % figure(1);
 % edges = [-10*sigma:1:10*sigma];
 % histogram(r1,edges);
-%pre = 100;
-%h_r1 = h(r1*pre)-log2(pre);
+pre = 100;
+h_r1 = h(r1*pre)-log2(pre);
 
+%% aother Gaussian variable with variabce 3
 sigma2 = 3;
-%h_norm2= 1/2*log2(2*pi*exp(1)*sigma2^2);
+h_norm2= 1/2*log2(2*pi*exp(1)*sigma2^2);
 r2 = normrnd(0,sigma2,[1 100000000])';
-%h_r2 = h(r2*pre)-log2(pre);
+h_r2 = h(r2*pre)-log2(pre);
 
+%% joint entropy of two Gaussian variables
 r = [r1,r2];
 h_joint = h(r);
 
