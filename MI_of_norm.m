@@ -1,4 +1,10 @@
 %% the simulation about the basic model of physical layer key generation scheme
+% calculate the mutual information between two variables x, y
+% r_h channel information (Guassin variables)
+% z1 and z1 noise signals ((Guassin variables))
+% x = r_h+z1;
+% y = r_h+z2;
+
 % Two independent complex Gaussian random variables Z1~N(0,N1),Zb~N(0,N2),
 % serving as noises corrupting the channel observation by Alice and Bob,
 % respectively.
