@@ -19,19 +19,19 @@ Pt = 190;           %transmission power of the RF source
 rho = 0.2;          %power split ratio for information receiver, range is [0,1]
 
 sigma_f1 = sqrt(0.868);    %channel f1
-f1 = normrnd(0,sigma_f1,[1 1000000])';
+f1 = normrnd(0,sigma_f1,[1 100000])';
 
 sigma_f2 = sqrt(0.680);    %channel f2
-f2 = normrnd(0,sigma_f2,[1 1000000])';
+f2 = normrnd(0,sigma_f2,[1 100000])';
 
 sigma_h12 = sqrt(1.93);          %channel h12 or h21
-h12 = normrnd(0,sigma_h12,[1 1000000])';
+h12 = normrnd(0,sigma_h12,[1 100000])';
 
 sigma_z1 = 1;       % noise at the device BD1
-z1 = normrnd(0,sigma_z1,[1 1000000])';
+z1 = normrnd(0,sigma_z1,[1 100000])';
 
 sigma_z2 = 1;       % noise at the device BD2
-z2 = normrnd(0,sigma_z2,[1 1000000])';
+z2 = normrnd(0,sigma_z2,[1 100000])';
 
 v1 = 4*alpha*(rho^2)*Pt*h12.*f1.*f2;
 v2 = 4*alpha*(rho^2)*Pt*h12.*f2.*f1;
@@ -46,9 +46,9 @@ C_real = mi(v12,v21);
 %% the parameters of the eavesdropper
 % the channel information and noise
 sigma_h_1e = sqrt(5.4);
-h_1e = normrnd(0,sigma_h_1e,[1 1000000])';
+h_1e = normrnd(0,sigma_h_1e,[1 100000])';
 sigma_h_2e = sqrt(5.4);
-h_2e = normrnd(0,sigma_h_2e,[1 1000000])';
+h_2e = normrnd(0,sigma_h_2e,[1 100000])';
 
 v_e = 4*alpha^2*Pt*h_1e.*h_2e.*f1.*f2;
 % the conditional mutual information under the eavesdropper

@@ -34,25 +34,15 @@ alpha = 0.3+0.4i;
 % simulation parameters
 % modulation methods: BPSK, QPSK,16QAM, 32QAM,64QAM
 mod_method = 'QPSK';
-
-% IFFT/FFT size
-n_fft = 128;
-
-% size of cyclic prefix extension
-n_cpe = 32;
-
-% the size of a OFDM frame
-n_ofdm = n_fft+n_cpe;
-
-% the acount of the OFDM frame
-n_frame = 1;
-
-% target SNR (dB)
-snr =10;
+n_fft = 64;% IFFT/FFT size
+n_cpe = 32; % size of cyclic prefix extension
+n_ofdm = n_fft+n_cpe;% the size of a OFDM frame
+n_frame = 2; % the acount of the OFDM frame
+snr =10; % target SNR (dB)
 
 % number of channel taps (1 = one channel) 
 n_taps1 = 7;        %f1
-n_taps2 = 4;        %f1
+n_taps2 = 6;        %f1
 n_taps_h12 = 3;        %h12
 
 % the maximum of the channel spread
@@ -68,9 +58,12 @@ save_file = 0;
 mod_methods = {'BPSK', 'QPSK','8PSK','16QAM', '32QAM','64QAM'};
 mod_order = find(ismember(mod_methods, mod_method));
 
-% input data to binary stream
-% rand_ints_gen = randi(2,n_fft*mod_order*n_frame,1)-1;
+
+% generate a vector whose elements are 0 and 1.
+% rand_ints_gen = randi(2,n_fft*mod_order*n_frame,1)-1; 
 % save data_input.txt -ascii rand_ints_gen
+
+% input data to binary stream
 rand_ints = load("data_input.txt");
 rand_bits = dec2bin(rand_ints(:));
 im_bin = rand_bits(:);
@@ -84,7 +77,7 @@ im_bin_padded = [im_bin;padding];
 cons_data = reshape(im_bin_padded, mod_order,length(im_bin_padded)/mod_order)';
 cons_sym_id = bin2dec(cons_data);
 
-% symbol modulation
+% symbol modulation, mainly generate teh symbol book
 % BPSK
 if mod_order == 1
     mod_ind = 2^(mod_order-1);
@@ -125,7 +118,7 @@ end
 X = symbol_book(cons_sym_id+1);
 
 % use IFFT to move to time domain
-% pad input signal to appropriate length
+%  and pad input signal to appropriate length
 fft_rem = mod(n_fft-mod(length(X),n_fft),n_fft);
 X_padded = [X;zeros(fft_rem,1)];
 X_blocks = reshape(X_padded, n_fft,length(X_padded)/n_fft);
@@ -142,9 +135,10 @@ x_s = x_cpe(:);
 %x_s = repmat(1+1i,n_ofdm,1);
 
 x_s = x_s/sqrt(mean(abs(x_s).^2));
-mean(x_s);
+mean(x_s)
 data_pwr = mean(abs(x_s).^2);
 data_pwr2 = mean(x_s.*conj(x_s));
+
 % add noise to channel 
 noise_pwr = data_pwr/10^(snr/10);
 noise = normrnd(0,sqrt(noise_pwr/2),size(x_s))+normrnd(0,sqrt(noise_pwr/2),size(x_s))*1i;
@@ -204,13 +198,12 @@ bc_signal_bh = repmat(-1,n_ofdm/2,1);
 bc_signal = [bc_signal_fh' bc_signal_bh']';
 bc_signal = repmat(bc_signal,n_frame,1);
 
+% backscatter operation of the signal from user2
 sym_rem = mod(length(x_s_noise_fading2),n_ofdm);
 padding_bc = ones(sym_rem,1);
 bc_signal = [bc_signal',padding_bc']';
-% backscatter operation of the signal from user2
 x_s_noise_fading2_bc = alpha*bc_signal.*x_s_noise_fading2;
 data_x_s_noise_fading2_bc_pwr = mean(abs(x_s_noise_fading2_bc).^2);
-
 
 % the channel h12 model
 pow_h12 = exp(-(0:n_taps_h12-1));
@@ -284,6 +277,7 @@ end
 %zd2_s_noise = zd2_s_noise/2;
 
 %% virtual link information between two BDs
+%user1
 v12_s_noise = zb1_s_noise.*zd1_s_noise;
 
 v12_s_noise_ch = zb1_s_noise.*zd1_s_noise.*conj(x_s(n_L1:n_cpe)).*conj(x_s(n_L1:n_cpe))./(x_s(n_L1:n_cpe).*conj(x_s(n_L1:n_cpe))).^2;
@@ -293,6 +287,7 @@ zb1_s_noise_pwr = mean(zb1_s_noise.*conj(zb1_s_noise));
 zd1_s_noise_pwr = mean(zd1_s_noise.*conj(zd1_s_noise));
 v12_s_noise_pwr = mean(v12_s_noise.*conj(v12_s_noise));
 
+%user2
 v21_s_noise = zb2_s_noise.*zd2_s_noise;
 zb2_s_noise_pwr = mean(abs(zb2_s_noise).^2);
 zd2_s_noise_pwr = mean(abs(zd2_s_noise).^2);
