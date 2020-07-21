@@ -23,7 +23,7 @@ rand_bits = dec2bin(data(:));
 sym_rem = mod(mod_order-mod(length(rand_bits),mod_order),mod_order);
 padding = repmat('0',sym_rem,1);
 rand_bits_padded = [rand_bits;padding];
-cons_data = reshape(rand_bits_padded, mod_order,length(rand_bits_padded)/mod_order)';
+cons_data = reshape(rand_bits_padded, mod_order,length(im_bin_padded)/mod_order)';
 cons_sym_id = bin2dec(cons_data);
 
 % symbol modulation codebook
@@ -65,8 +65,7 @@ end
 
 % modulate data according to symbol_book
 X = symbol_book(cons_sym_id+1);
-%size_X = size(X)
-
+size_X = size(X)
 % use IFFT to move to time domain
 % pad input signal to appropriate lengthmod(length(X),n_fft)
 fft_rem = mod(n_fft-mod(length(X),n_fft),n_fft);
