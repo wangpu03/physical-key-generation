@@ -1,0 +1,8 @@
+function h = ray_model(d,taps)
+
+lamda = 3;
+
+h_cg = d^(-lamda/2);
+
+pow_h = exp(-(0:n_taps1-1));
+pow_h = h_cg*pow_h

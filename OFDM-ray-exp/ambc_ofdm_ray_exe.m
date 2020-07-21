@@ -163,7 +163,7 @@ pow_f1 = exp(-(0:n_taps1-1));
 pow_f1 = f1_cg*pow_f1/norm(pow_f1);
 
 h_f1=(randn(1,1)+1i*randn(1,1)).*sqrt(pow_f1/2);
-data_h_f1_pwr = mean(h_f1.*conj(h_f1));
+data_h_f1_pwr = mean(h_f1.*conj(h_f1))
 
 x_s_noise_fading1 = conv(x_s_noise,h_f1);
 data_x_s_noise_fading1_pwr = mean(abs(x_s_noise_fading1).^2);
@@ -278,8 +278,9 @@ end
 
 %% virtual link information between two BDs
 %user1
-v12_s_noise = zb1_s_noise.*zd1_s_noise;
+v12_s_noise = zb1_s_noise.*zd1_s_noise;  %% all information 
 
+% the estimated channel information
 v12_s_noise_ch = zb1_s_noise.*zd1_s_noise.*conj(x_s(n_L1:n_cpe)).*conj(x_s(n_L1:n_cpe))./(x_s(n_L1:n_cpe).*conj(x_s(n_L1:n_cpe))).^2;
 v12_s_noise_ch_pwr = mean(abs(v12_s_noise_ch).^2);
 

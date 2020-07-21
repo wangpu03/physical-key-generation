@@ -37,13 +37,13 @@ mod_method = 'QPSK';
 n_fft = 128;
 
 % size of cyclic prefix extension
-n_cpe = 32;
+n_cpe = n_fft/4;
 
 % the size of a OFDM frame
 n_ofdm = n_fft+n_cpe;
 
 % the acount of the OFDM frame
-n_frame = 1;
+n_frame = 3;
 
 % target SNR (dB)
 snr =10;
