@@ -1,0 +1,27 @@
+function [y,y_cp] = receiver_design(y_d, y_b, n_ofdm, n_cp, taps)
+% combinaiton of two signals
+
+sym_rem = mod(n_ofdm-mod(length(y_d),n_ofdm),n_ofdm);
+padding = repmat(0+0i,sym_rem,1);
+y_d_padded = [y_d;padding];
+
+sym_rem = mod(n_ofdm-mod(length(y_b),n_ofdm),n_ofdm);
+padding = repmat(0+0i,sym_rem,1);
+y_b_padded = [y_b;padding];
+
+y = y_d_padded+y_b_padded;
+
+%% calculate the desired information at receivering devices
+% user 1
+zb1_s_noise = x_s_noise_bd1(n_L1:n_cpe)-x_s_noise_bd1(n_fft+n_L1:n_fft+n_cpe);
+for n = 1:1:n_frame-1
+    zb1_s_noise =[zb1_s_noise(:)' (x_s_noise_bd1(n*n_ofdm+n_L1:n*n_ofdm+n_cpe)-x_s_noise_bd1(n*n_ofdm+n_fft+n_L1:n*n_ofdm+n_fft+n_cpe))']';
+end
+%zb1_s_noise = zb1_s_noise/2;
+
+zd1_s_noise = x_s_noise_bd1(n_L1:n_cpe)+x_s_noise_bd1(n_fft+n_L1:n_fft+n_cpe);
+for n = 1:1:n_frame-1
+    zd1_s_noise =[zd1_s_noise(:)' (x_s_noise_bd1(n*n_ofdm+n_L1:n*n_ofdm+n_cpe)+x_s_noise_bd1(n*n_ofdm+n_fft+n_L1:n*n_ofdm+n_fft+n_cpe))']';
+end
+%zd1_s_noise = zd1_s_noise/2;
+

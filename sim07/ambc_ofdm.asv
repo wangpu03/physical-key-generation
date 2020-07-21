@@ -39,7 +39,7 @@ he = eave_ray_model(h1,0,d(1));
 h_e1 = eave_ray_model(h_12,0,d(3));
 
 pt = 1;
-snr = 45;
+snr = 15;
 alpha = 0.3 + 1i*4;
 pw_noise = pt/10^(snr/10);
 
@@ -56,7 +56,6 @@ y2_b = ofdm_trans(back1, h_12, pw_noise);
 [y1,y1_cp] = receiver_design(y1_d, y1_b, n_ofdm, n_cp, n_frame, n_L);
 [y2,y2_cp] = receiver_design(y2_d, y2_b, n_ofdm, n_cp, n_frame, n_L);
 
-v_y1_cp = mean(abs(y1_cp));
-v_y2_cp = mean(abs(y2_cp));
+pw_y1_cp = mean(abs(y1_cp).^2)
 
 
