@@ -1,7 +1,7 @@
 %% simulation of the key generation between two Backscatter devices
 clc;
 clear;
-addpath(genpath('C:\Code file\Matlab\physical-key-generation\MIToolbox-master\matlab'));
+addpath(genpath('E:\Github\physical-key-generation\MIToolbox-master\matlab'));
 
 %Pt = 110;           %transmission power of the RF source
 rho = 0.2;          %power split ratio for information receiver, range is [0,1]

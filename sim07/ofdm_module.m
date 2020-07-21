@@ -1,4 +1,4 @@
-function ofdm_data = ofdm_module(data,mod_method, n_fft, n_cp)
+function ofdm_data = ofdm_module(data,mod_method, n_fft, n_cp, cp_flag)
 % modulate the data with OFDM
 % inputs:
 %       data: input raw data with bits, length = n_fft*mod_order*n_frame
@@ -6,8 +6,13 @@ function ofdm_data = ofdm_module(data,mod_method, n_fft, n_cp)
 %       n_fft: IFFT/FFT size
 %       n_cp: size of cyclic prefix extension
 %       n_frame: the acount of the OFDM frame
+%       cp_flag: 1--cp, 0--guard
 %output:
 %       ofdm_data: modulated OFDM data
+
+if nargin < 4
+    cp_flag = 1;
+end
 
 %n_ofdm = n_fft+n_cp;
 % calculate modulation order from modulation method
@@ -73,10 +78,19 @@ fft_rem = mod(n_fft-mod(length(X),n_fft),n_fft);
 X_padded = [X;zeros(fft_rem,1)];
 X_blocks = reshape(X_padded, n_fft,length(X_padded)/n_fft);
 x = ifft(X_blocks);
-
+%data_x_pwr = mean(abs(x).^2)
 % add cyclic prefix extension and shift from parallel to serial
-x_cp = [x(end-n_cp+1:end,:);x];
+guard = sqrt(mean(abs(x).^2))/sqrt(2)*(1+1i);
+guard = repmat(guard,n_cp,1);
+
+if cp_flag
+    x_cp = [x(end-n_cp+1:end,:);x];
+else
+    x_cp = [guard;x(1:n_fft-n_cp,:);guard];
+end
+
 ofdm_data = x_cp(:);
+
 ofdm_data = ofdm_data/sqrt(mean(abs(ofdm_data).^2));
 
 

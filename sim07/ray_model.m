@@ -8,7 +8,7 @@ function h = ray_model(d,taps)
 
 lamda = 3;
 
-h_cg = 5 * d^(-lamda/2);
+h_cg = 5*d^(-lamda/2);
 
 pow_h = exp(-(0:taps-1));
 pow_h = h_cg*pow_h/norm(pow_h);
