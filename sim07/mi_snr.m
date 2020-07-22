@@ -1,4 +1,14 @@
 function [v_y1_cp, v_y2_cp] = mi_snr(data_ofdm, n_ofdm, n_cp ,n_frame, snr)
+% inputs:
+%       data_ofdm: the modulated data with OFDM
+%       n_ofdm:  the number of the ofdm symbols in a ofdm frame
+%       n_cp:
+%       n_frame: the number of the ofdm frames
+%       snr: signal to noise rate (dB)
+% outputs:
+%       v_y1_cp: the ofdm symbols within CP part of devices 1
+%       v_y2_cp: the ofdm symbols within CP part of devices 2
+
 %% simulation parameters
 d = [8, 7, 3];
 taps = [8, 7, 3];
@@ -6,10 +16,7 @@ n_L = max(taps(1),taps(2))+taps(3)-1;
 
 h1 = ray_model(d(1),taps(1));
 h2 = ray_model(d(2),taps(2));
-
 h_12 = ray_model(d(3),taps(3));
-
-
 
 pt = 1;
 %snr = 100;
