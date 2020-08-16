@@ -47,7 +47,7 @@ v2_bit = double(v2>= mean_v2);
 ve1_bit = double(ve1>= mean_ve1);
 ve2_bit = double(ve2>= mean_ve2);
 
-cmi_ve2 = zeros(1,length(snr));
+cmi_ve2 = zeros(1,length(snr)); 
 cmi_ve1 = zeros(1,length(snr));
 mi_bit = zeros(1,length(snr));
 for i = 1:length(snr)

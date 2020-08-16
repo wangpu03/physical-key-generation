@@ -129,13 +129,13 @@ num_diag_max = sum(mi_diag_max ~= 0);
 num_25_max = sum(mi_25_max ~= 0);
 num_2_max = sum(mi_2_max ~= 0);
 % 
-plot([E_th(1:num_max),E_th(num_max)], [mi_max(1:num_max),0],'-*','LineWidth',1);
+plot([E_th(1:num_max),E_th(num_max)], [mi_max(1:num_max),0],'r-*','LineWidth',1);
 hold on;
-plot(E_th(1:num_diag_max), mi_diag_max(1:num_diag_max),'-s','LineWidth',1);
+plot(E_th(1:num_diag_max), mi_diag_max(1:num_diag_max),'b-s','LineWidth',1);
 hold on;
-plot(E_th(1:num_25_max), mi_25_max(1:num_25_max),'-v','LineWidth',1);
+plot(E_th(1:num_25_max), mi_25_max(1:num_25_max),'k-v','LineWidth',1);
 hold on;
-plot([E_th(1:num_2_max),E_th(num_2_max)], [mi_2_max(1:num_2_max),0],'-o','LineWidth',1);
+plot([E_th(1:num_2_max),E_th(num_2_max)], [mi_2_max(1:num_2_max),0],'k-o','LineWidth',1);
 hold on;
 % % plot(E_th, mi_diag_max_2,'LineWidth',1.5);
 
@@ -176,10 +176,6 @@ a3 = annotation('textbox',dim,'String','K3');
 a3.Color = 'red';
 a3.FontSize = 12;
 a3.LineStyle = 'none';
-
-
-
-
 
 
 axis([0 0.02 0 1.05]);

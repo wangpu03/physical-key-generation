@@ -1,6 +1,6 @@
 function  [v_y1_cp, v_y2_cp, v_ye1_cp, v_ye2_cp] = skr_snr(data_ofdm, n_ofdm, n_cp ,n_frame, cor, d_e1, snr)
 
-pt = 1;
+pt = 10^(-2);
 %snr = 100;
 alpha = 0.3 + 1i*0.4;
 pw_noise = pt/10^(snr/10);
@@ -46,6 +46,7 @@ v_y2_cp = mean(abs(y2_cp));
 ye_d = ofdm_trans(data_ofdm, he, pw_noise);
 y_b_e2 = ofdm_trans(back2, h_e2, pw_noise);
 y_b_e1 = ofdm_trans(back1, h_e1, pw_noise);
+
 
 [ye1_cp, ye2_cp] = evea_design(ye_d,y_b_e1, y_b_e2, n_ofdm, n_cp, n_frame, n_L);
 v_ye1_cp = mean(abs(ye1_cp));

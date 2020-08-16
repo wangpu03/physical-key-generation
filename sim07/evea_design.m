@@ -27,7 +27,7 @@ zd_e2 = y_e2(n_L:n_cp) + y_e2(n_fft+n_L:n_fft+n_cp);
 for n = 1:1:n_frame-1
     zd_e2 =[zd_e2(:); (y_e2(n*n_ofdm+n_L:n*n_ofdm+n_cp)+y_e2(n*n_ofdm+n_fft+n_L:n*n_ofdm+n_fft+n_cp))];
 end
-ye2_cp = zb_e2 .* zd_e2;
+ye2_cp = zb_e2 .* zd_e2;  %%发射信号和直射信号相乘，得到第一类窃听方法
 
 n_fft = n_ofdm - n_cp;
 zb_e1 = y_e1(n_L:n_cp) - y_e1(n_fft+n_L:n_fft+n_cp);
@@ -35,4 +35,4 @@ for n = 1:1:n_frame-1
     zb_e1 =[zb_e1(:); (y_e1(n*n_ofdm+n_L:n*n_ofdm+n_cp)-y_e1(n*n_ofdm+n_fft+n_L:n*n_ofdm+n_fft+n_cp))];
 end
 
-ye1_cp = zb_e1 .* zb_e2;
+ye1_cp = zb_e1 .* zb_e2;  %%两个反射信号相乘，得到第二类窃听方法
