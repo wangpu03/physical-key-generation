@@ -168,9 +168,9 @@ hold on;
 plot(snr, mi_bit_pre,'-s','LineWidth',1.5,'Color', '#0072BD');
 grid on;
 axis([0 30 0.3 0.95]);
-legend('CP','ZP','OP','1-0 bit');
+legend('CP','ZP','OP','1-0 bits');
 %legend('K = 1, N_{FFT} = 256','K = 3, N_{FFT} = 256','K = 1, N_{FFT} = 256','K = 3, N_{FFT} = 256','K = 1, N_{Guard} = 256','K = 1, N_{Guard} = 256','K = 1, N_{Guard}= 256,Noiseless');
-ylabel('Mutual Information per bit');
+ylabel('每比特互信息（bits）','Fontname','<宋体>');
 xlabel('SNR (dB)');
 
 %% 计算BDR
@@ -190,8 +190,8 @@ hold on;
 plot(snr, bdr_pre,'-s','LineWidth',1.5,'Color', '#0072BD');
 grid on;
 axis([0 30 0.0 0.17]);
-legend('CP','ZP','OP','1-0 bit');
+legend('CP','ZP','OP','1-0 bits');
 %legend('K = 1, N_{FFT} = 256','K = 3, N_{FFT} = 256','K = 1, N_{FFT} = 256','K = 3, N_{FFT} = 256','K = 1, N_{Guard} = 256','K = 1, N_{Guard} = 256','K = 1, N_{Guard}= 256,Noiseless');
-ylabel('Bit Disagreement Ratio');
+ylabel('互异比特比率','Fontname','<宋体>');
 xlabel('SNR (dB)');
 datestr(now)

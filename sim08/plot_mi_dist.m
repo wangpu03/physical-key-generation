@@ -155,6 +155,7 @@ mi_bit_1276 = mi_bit;
 cmi_ve2_1276 = cmi_ve2;
 cmi_ve1_1276 = cmi_ve1;
 
+
 plot(snr, mi_bit_873,'r-o','LineWidth',1.5);
 hold on;
 plot(snr, mi_bit_1273,'k-x','LineWidth',1.5);
@@ -178,7 +179,7 @@ elps1.Color = '#D95319';
 
 x = [0.770,0.820];
 y = [0.52,0.635];
-a1 = annotation('textarrow',x, y,'String','Secret key rate');
+a1 = annotation('textarrow',x, y,'String','密钥生成速率','Fontname','<宋体>');
 a1.Color = 'red';
 a1.FontSize = 12;
 a1.LineWidth = 1.5;
@@ -189,7 +190,7 @@ elps2.Color = '#D95319';
 
 x2 = [0.60,0.6700];
 y2 = [0.60,0.67];
-a2 = annotation('textarrow',x2, y2,'String','Mutual information');
+a2 = annotation('textarrow',x2, y2,'String','互信息','Fontname','<宋体>');
 a2.Color = 'red';
 a2.FontSize = 12;
 a2.LineWidth = 1.5;
@@ -199,7 +200,7 @@ elps3.LineWidth = 1.5;
 elps3.Color = '#D95319';
 x3 = [0.77,0.830];
 y3 = [0.25,0.17];
-a3 = annotation('textarrow',x3, y3,'String','Leak information');
+a3 = annotation('textarrow',x3, y3,'String','泄漏信息量','Fontname','<宋体>');
 a3.Color = 'red';
 a3.FontSize = 12;
 a3.LineWidth = 1.5;

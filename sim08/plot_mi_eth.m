@@ -179,9 +179,9 @@ a3.LineStyle = 'none';
 
 
 axis([0 0.02 0 1.05]);
-ylabel('Mutual information (bit)');
-xlabel('E_{th}');
-legend('p_t = 1, p_n =0.001','p_t = 1, p_n =0.001 (\rho_1 = \rho_2)','p_t = 1, p_n =0.003','p_t = 1.5, p_n =0.001')
+ylabel('每比特互信息（bits）','Fontname','<宋体>');
+xlabel('能量收集门限','Fontname','<宋体>');
+legend('信号功率 = 1, 噪声功率 =0.001','信号功率 = 1, 噪声功率 =0.001 (\rho_1 = \rho_2)','信号功率 = 1, 噪声功率 =0.003','信号功率 = 1.5, 噪声功率 =0.001','Fontname','<宋体>')
 
 %mesh(rho1,rho2,mi);
 

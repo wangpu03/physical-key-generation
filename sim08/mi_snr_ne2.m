@@ -219,9 +219,9 @@ axis([0.5 10.5 -0.1 1]);
 %time = [10^-4,2.5*10^-4,5*10^-4,10^-3,2.5 *10^-3,5 *10^-3, 10^-2, 2.5*10^-2, 5*10^-2,10^-1];
 set(gca,'XTickLabel',{'0.0001','0.00025', '0.0005', '0.001', '0.0025', '0.005', '0.01', '0.025', '0.05','0.1'});
 xtickangle(50)
-legend('snr = 0,    triangle','snr = 0,    inward','snr = 30,  triangle','snr = 30,  inward');
-ylabel('Mutual Information per bit');
-xlabel('Time delay (s)');
+legend('snr = 0,    三角信道','snr = 0,    内向信道','snr = 30,  三角信道','snr = 30,  内向信道','Fontname','<宋体>');
+ylabel('每比特互信息（bits）','Fontname','<宋体>');
+xlabel('测量间隔 (s)','Fontname','<宋体>');
 
 
 %%
@@ -236,6 +236,22 @@ grid on;
 axis([0.5 10.5 -0.1 1]);
 set(gca,'XTickLabel',{'0.0001','0.00025', '0.0005', '0.001', '0.0025', '0.005', '0.01', '0.025', '0.05','0.1'});
 xtickangle(50)
-legend('snr = 0,    triangle','snr = 0,    inward','snr = 30,  triangle','snr = 30,  inward');
+legend('snr = 0,    三角信道','snr = 0,    内向信道','snr = 30,  三角信道','snr = 30,  内向信道','Fontname','<宋体>');
+ylabel('每比特互信息（bits）','Fontname','<宋体>');
+xlabel('测量间隔 (s)','Fontname','<宋体>');
+
+figure(3);
+plot(mi_bit_snr0_cor2,'k-s','LineWidth',1.5);
+hold on;
+plot(mi_bit_snr0_trad_cor2,'k--s','LineWidth',1.5);
+plot(mi_bit_snr0,'r-s','LineWidth',1.5);
+plot(mi_bit_snr0_trad,'r--s','LineWidth',1.5);
+hold off;
+grid on;
+axis([0.5 10.5 -0.1 1]);
+set(gca,'XTickLabel',{'0.0001','0.00025', '0.0005', '0.001', '0.0025', '0.005', '0.01', '0.025', '0.05','0.1'});
+xtickangle(50)
 ylabel('Mutual Information per bit');
 xlabel('Time delay (s)');
+legend('fd = 10Hz,    triangle','fd = 10Hz,    inward','fd = 100Hz,  triangle','fd = 100Hz,  inward');
+

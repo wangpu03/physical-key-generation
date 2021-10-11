@@ -315,7 +315,8 @@ plot(snr, mi_bit_3256_2,'--s','LineWidth',1.5,'Color', '#0072BD'); %+0.02./(snr.
 grid on;
 axis([0 30 0.5 0.95]);
 legend('K = 1, N = 64, L = 10','K = 3, N = 64, L = 10','K = 1, N = 256, L = 10','K = 3, N = 256, L = 10','K = 1, N = 64, L = 5','K = 3, N = 64, L = 5','K = 1, N = 256, L = 5','K = 3, N = 256, L = 5');
-ylabel('Mutual Information per bit');
+%ylabel('Mutual Information per bit');
+ylabel('每比特互信息（bits）','Fontname','<宋体>');
 xlabel('SNR (dB)');
 
 %% 计算BDR
@@ -348,6 +349,6 @@ plot(snr, bdr_3256_2,'--s','LineWidth',1.5,'Color', '#0072BD');
 grid on;
 axis([0 30 0.0 0.08]);
 legend('K = 1, N = 64, L = 10','K = 3, N = 64, L = 10','K = 1, N = 256, L = 10','K = 3, N = 256, L = 10','K = 1, N = 64, L = 5','K = 3, N = 64, L = 5','K = 1, N = 256, L = 5','K = 3, N = 256, L = 5');
-ylabel('Bit Disagreement Ratio');
+ylabel('互异比特比率','Fontname','<宋体>');
 xlabel('SNR (dB)');
 datestr(now)

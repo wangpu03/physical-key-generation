@@ -199,7 +199,9 @@ ve2_trad_6 = ve2;
 mi_trad_bit_6 = mi_bit;
 cmi_trad_ve2_6 = cmi_ve2;
 cmi_trad_ve1_6 = cmi_ve1;
-%%
+
+
+%%数据块，skr_snr_50000
 plot(snr,cmi_ve2_0,'r-o','LineWidth',1.5);   %%第一类窃听方法后的安全速率
 hold on;
 plot(snr,cmi_ve1_0,'-v','LineWidth',1.5,'Color', '#0072BD');
@@ -210,8 +212,9 @@ plot(snr,cmi_trad_ve2_6,'k--d','LineWidth',1.5);
 hold off;
 grid on;
 axis([0 30 0 0.95])
-legend('cor = 0, V|Ve^1','cor = 0, V|Ve^2','cor = 0, V_h|Ve','cor = 0.6, V|Ve^1','cor = 0.6, V|Ve^2','cor = 0.6, V_h|Ve');
-ylabel('Secret Key Rate (bit)');
+%legend('cor = 0, V|Ve^1','cor = 0, V|Ve^2','cor = 0, V_h|Ve','cor = 0.6, V|Ve^1','cor = 0.6, V|Ve^2','cor = 0.6, V_h|Ve');
+legend('cor = 0,    三角信道|窃听模型一','cor = 0,    三角信道|窃听模型二','cor = 0,    内向信道|窃听模型','cor = 0.6, 三角信道|窃听模型一','cor = 0.6, 三角信道|窃听模型二','cor = 0.6, 内向信道|窃听模型','Fontname','<宋体>');
+ylabel('安全密钥速率（bit/measurement）','Fontname','<宋体>');
 xlabel('SNR (dB)');
 
 plot(snr,mi_bit_0-cmi_ve2_0,'r-o','LineWidth',1.5);
@@ -223,7 +226,20 @@ plot(snr,mi_bit_6-cmi_ve1_6,'--v','LineWidth',1.5,'Color', '#0072BD');
 plot(snr,mi_bit_6- cmi_trad_ve2_6,'k--d','LineWidth',1.5);
 grid on;
 axis([0 30 0 0.8])
-legend('cor = 0, V|Ve^1','cor = 0, V|Ve^2','cor = 0, V_h|Ve','cor = 0.6, V|Ve^1','cor = 0.6, V|Ve^2','cor = 0.6, V_h|Ve');
-ylabel('Leak Information (bit)');
+legend('cor = 0,    三角信道|窃听模型一','cor = 0,    三角信道|窃听模型二','cor = 0,    内向信道|窃听模型','cor = 0.6, 三角信道|窃听模型一','cor = 0.6, 三角信道|窃听模型二','cor = 0.6, 内向信道|窃听模型','Fontname','<宋体>');
+ylabel('泄漏信息量（bit/measurement）','Fontname','<宋体>');
 xlabel('SNR (dB)');
 hold off;
+
+%%数据块，skr_snr_50000
+plot(snr,cmi_ve2_0,'r-o','LineWidth',1.5);   %%第一类窃听方法后的安全速率
+hold on;
+plot(snr,cmi_ve1_0,'-v','LineWidth',1.5,'Color', '#0072BD');
+plot(snr,cmi_trad_ve2_0,'k-d','LineWidth',1.5);
+hold off;
+grid on;
+axis([0 30 0.5 0.95])
+%legend('cor = 0, V|Ve^1','cor = 0, V|Ve^2','cor = 0, V_h|Ve','cor = 0.6, V|Ve^1','cor = 0.6, V|Ve^2','cor = 0.6, V_h|Ve');
+legend('V|Ve^1','V|Ve^2','V_{in}|Ve');
+ylabel('Secret key rate per bit');
+xlabel('SNR (dB)');
